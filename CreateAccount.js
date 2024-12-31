@@ -1,22 +1,31 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
-export default function LoginScreen({ navigation }) {
+export default function CreateAccountScreen({ navigation }) {
+  const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignIn = () => {
-    if (username && password) {
-      navigation.navigate('Home');
+  const handleSignUp = () => {
+    if (email && username && password) {
+      // Replace this with real sign-up logic
+      alert('Account created successfully!');
+      navigation.navigate('Login');
     } else {
-      alert('Please enter valid credentials.');
+      alert('Please fill out all fields.');
     }
   };
 
   return (
     <View style={styles.container}>
-      
-      <Text style={styles.slogan}>Manisha sucks bruh</Text>
+      <Text style={styles.title}>Create an Account</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+      />
       <TextInput
         style={styles.input}
         placeholder="Username"
@@ -30,11 +39,8 @@ export default function LoginScreen({ navigation }) {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <TouchableOpacity style={styles.button} onPress={handleSignIn}>
-        <Text style={styles.buttonText}>Sign In</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.createAccountButton} onPress={() => navigation.navigate('CreateAccount')}>
-        <Text style={styles.createAccountText}>Don't have an account? Create one</Text>
+      <TouchableOpacity style={styles.button} onPress={handleSignUp}>
+        <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
     </View>
   );
@@ -48,8 +54,9 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#f5f5f5',
   },
-  slogan: {
-    fontSize: 20,
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
     marginBottom: 30,
     color: '#333',
   },
@@ -70,17 +77,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
-    marginBottom: 15,
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
-  },
-  createAccountButton: {
-    marginTop: 10,
-  },
-  createAccountText: {
-    color: '#007BFF',
-    fontSize: 16,
   },
 });
