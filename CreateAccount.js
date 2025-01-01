@@ -1,30 +1,39 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+} from 'react-native';
 
-export default function CreateAccountScreen({ navigation }) {
-  const [email, setEmail] = useState('');
+export default function CreateAccountScreen({ navigation, users, setUsers }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
 
-  const handleSignUp = () => {
-    if (email && username && password) {
-      // Replace this with real sign-up logic
-      alert('Account created successfully!');
-      navigation.navigate('Login');
-    } else {
-      alert('Please fill out all fields.');
+  const handleCreateAccount = () => {
+    // Check if username already exists
+    if (users.some((u) => u.username === username)) {
+      Alert.alert('Error', 'Username already exists.');
+      return;
     }
+
+    // Add new user to the database
+    setUsers([...users, { username, password }]);
+    Alert.alert('Success', 'Account created successfully!');
+    navigation.navigate('Login');
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Create an Account</Text>
+      <Text style={styles.title}>Create Account</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
-        keyboardType="email-address"
       />
       <TextInput
         style={styles.input}
@@ -39,8 +48,8 @@ export default function CreateAccountScreen({ navigation }) {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <TouchableOpacity style={styles.button} onPress={handleSignUp}>
-        <Text style={styles.buttonText}>Sign Up</Text>
+      <TouchableOpacity style={styles.createButton} onPress={handleCreateAccount}>
+        <Text style={styles.createButtonText}>Sign Up</Text>
       </TouchableOpacity>
     </View>
   );
@@ -49,37 +58,32 @@ export default function CreateAccountScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     padding: 20,
     backgroundColor: '#f5f5f5',
+    justifyContent: 'center',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 30,
-    color: '#333',
+    marginBottom: 20,
+    textAlign: 'center',
   },
   input: {
-    width: '100%',
-    height: 50,
+    backgroundColor: '#fff',
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 15,
     borderWidth: 1,
     borderColor: '#ccc',
-    borderRadius: 10,
-    marginBottom: 15,
-    paddingHorizontal: 10,
-    backgroundColor: '#fff',
   },
-  button: {
-    backgroundColor: '#007BFF',
-    width: '100%',
-    height: 50,
-    justifyContent: 'center',
+  createButton: {
+    backgroundColor: '#28A745',
+    padding: 15,
+    borderRadius: 5,
     alignItems: 'center',
-    borderRadius: 10,
   },
-  buttonText: {
+  createButtonText: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 16,
   },
 });

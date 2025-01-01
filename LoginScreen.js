@@ -1,22 +1,33 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+} from 'react-native';
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen({ navigation, users }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignIn = () => {
-    if (username && password) {
-      navigation.navigate('Home');
+  const handleLogin = () => {
+    const user = users.find((u) => u.username === username);
+
+    if (!user) {
+      Alert.alert('Error', 'Username does not exist.');
+    } else if (user.password !== password) {
+      Alert.alert('Error', 'Incorrect password.');
     } else {
-      alert('Please enter valid credentials.');
+      Alert.alert('Success', 'Login successful!');
+      navigation.navigate('Home');
     }
   };
 
   return (
     <View style={styles.container}>
-      
-      <Text style={styles.slogan}>Manisha sucks bruh</Text>
+      <Text style={styles.title}>Login</Text>
       <TextInput
         style={styles.input}
         placeholder="Username"
@@ -30,11 +41,14 @@ export default function LoginScreen({ navigation }) {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <TouchableOpacity style={styles.button} onPress={handleSignIn}>
-        <Text style={styles.buttonText}>Sign In</Text>
+      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+        <Text style={styles.loginButtonText}>Sign In</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.createAccountButton} onPress={() => navigation.navigate('CreateAccount')}>
-        <Text style={styles.createAccountText}>Don't have an account? Create one</Text>
+      <TouchableOpacity
+        style={styles.createAccountButton}
+        onPress={() => navigation.navigate('CreateAccount')}
+      >
+        <Text style={styles.createAccountButtonText}>Create Account</Text>
       </TouchableOpacity>
     </View>
   );
@@ -43,44 +57,43 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     padding: 20,
     backgroundColor: '#f5f5f5',
+    justifyContent: 'center',
   },
-  slogan: {
-    fontSize: 20,
-    marginBottom: 30,
-    color: '#333',
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
   },
   input: {
-    width: '100%',
-    height: 50,
+    backgroundColor: '#fff',
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 15,
     borderWidth: 1,
     borderColor: '#ccc',
-    borderRadius: 10,
-    marginBottom: 15,
-    paddingHorizontal: 10,
-    backgroundColor: '#fff',
   },
-  button: {
+  loginButton: {
     backgroundColor: '#007BFF',
-    width: '100%',
-    height: 50,
-    justifyContent: 'center',
+    padding: 15,
+    borderRadius: 5,
     alignItems: 'center',
-    borderRadius: 10,
     marginBottom: 15,
   },
-  buttonText: {
+  loginButtonText: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 16,
   },
   createAccountButton: {
-    marginTop: 10,
+    backgroundColor: '#28A745',
+    padding: 15,
+    borderRadius: 5,
+    alignItems: 'center',
   },
-  createAccountText: {
-    color: '#007BFF',
+  createAccountButtonText: {
+    color: '#fff',
     fontSize: 16,
   },
 });
