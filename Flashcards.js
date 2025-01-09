@@ -2,16 +2,24 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native';
 
 const flashcards = [
-  { term: '1', definition: '...' },
-  { term: '2', definition: '...' },
-  { term: '3', definition: '...' },
-  { term: '4', definition: '....' },
-  { term: '5', definition: '...' },
-  { term: '6', definition: '...' },
-  { term: '7', definition: '...' },
-  { term: '8', definition: '...' },
-  { term: '9', definition: '...' },
-  { term: '10', definition: '...' },
+  { term: 'Density (d)', definition: 'd = m / v' },
+  { term: 'Convert °F to °C', definition: '(°F - 32°F) * 5°C / 9°F' },
+  { term: 'Convert °C to °F', definition: '9°F / 5°C * °C + 32°F' },
+  { term: 'Convert °C to K', definition: '(°C + 273.15°C) * 1K / 1°C' },
+  { term: 'Percent composition', definition: 'n * molar mass of element / molar mass of compound * 100%' },
+  { term: '% Yield', definition: 'actual yield / theoretical yield * 100%' },
+  { term: 'Dilution of solution', definition: 'Mi * Vi = Mf * Vf' },
+  { term: 'Molarity (M)', definition: 'M = moles / liters' },
+  { term: 'Ideal gas equation', definition: 'PV = nRT' },
+  { term: 'STP (Standard Temperature & Pressure)', definition: '0°C and 1 atm' },
+  { term: 'Graham\'s law of diffusion', definition: 'r₁ / r₂ = √(mm₂ / mm₁)' },
+  { term: 'Boyle\'s law', definition: 'P₁ * V₁ = P₂ * V₂' },
+  { term: 'Charles\'s law (V and T)', definition: 'V₁ / T₁ = V₂ / T₂' },
+  { term: 'Charles\'s law (P and T)', definition: 'P₁ / T₁ = P₂ / T₂' },
+  { term: 'Density or molar mass', definition: 'd = P(mm) / RT' },
+  { term: 'Heat capacity', definition: 'C = ms' },
+  { term: 'Heat change (specific heat)', definition: 'q = msΔt' },
+  { term: 'Heat change (heat capacity)', definition: 'q = CΔt' },
 ];
 
 export default function FlashcardsScreen({ navigation }) {

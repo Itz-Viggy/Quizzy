@@ -5,8 +5,21 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to the Home Page!</Text>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Flashcards')}>
+
+      {/* Flashcards Button */}
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate('Flashcards')}
+      >
         <Text style={styles.buttonText}>Flashcards</Text>
+      </TouchableOpacity>
+
+      {/* Help Button */}
+      <TouchableOpacity
+        style={styles.helpButton}
+        onPress={() => navigation.navigate('Help')}
+      >
+        <Text style={styles.helpButtonText}>Help</Text>
       </TouchableOpacity>
     </View>
   );
@@ -32,9 +45,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
+    marginBottom: 20,
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
+  },
+  helpButton: {
+    position: 'absolute',
+    bottom: 30,
+    backgroundColor: '#28A745',
+    width: 100,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+  },
+  helpButtonText: {
+    color: '#fff',
+    fontSize: 16,
   },
 });

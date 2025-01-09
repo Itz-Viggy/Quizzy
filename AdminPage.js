@@ -7,7 +7,7 @@ export default function AdminPage({ navigation, bugReports }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const login = () => {
-    if (username === 'admins123' && password === 'Admins123') {
+    if (username === 'admins1234' && password === 'Admins1234') {
       setIsAuthenticated(true);
     } else {
       alert('Invalid credentials');
