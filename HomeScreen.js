@@ -14,12 +14,22 @@ export default function HomeScreen({ navigation }) {
         <Text style={styles.buttonText}>Flashcards</Text>
       </TouchableOpacity>
 
-      {/* Help Button */}
+   
       <TouchableOpacity
         style={styles.helpButton}
         onPress={() => navigation.navigate('Help')}
       >
         <Text style={styles.helpButtonText}>Help</Text>
+      </TouchableOpacity>
+
+     
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MultipleChoice')}>
+        <Text style={styles.buttonText}>Multiple Choice</Text>
+      </TouchableOpacity>
+
+      
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Matching')}>
+        <Text style={styles.buttonText}>Matching</Text>
       </TouchableOpacity>
     </View>
   );
